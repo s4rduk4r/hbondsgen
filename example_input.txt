@@ -1,0 +1,100 @@
+#############
+# This is an example input file for `hbondsgen` utility.
+# This line is a commentary line. Each line starting with '#' considered a commentary.
+# Commentary line can be anywhere in file breaking all 3 sections.
+# Input file consists of 3 sections: TITLE, GEOMETRY, BONDS.
+# Each section must be terminated by an empty line
+# First section contains basic description of job.
+#############
+TITLE. Sample input for `hbondsgen` utility. m1Cyt..m1Cyt-imino example. 13-10-2012
+
+#############
+# Second section consists of 2 monomer descriptions followed by terminating empty line.
+# Monomer description consists of monomer name and any number of atom descriptions.
+# Atom descriptions must be represented in a specific way:
+# IMN	X	Y	Z	DAM		P
+# where:	IMN - intramolecular name of specific atom. E.g. N1, O2, H3, H4-1, H1-2, etc.
+#			X, Y, Z - cartesian coordinates of specific atom. Must be floating point number
+#			DAM	- donor-acceptor marker. Defines if particular atom is donor or acceptor or neither.
+#					Acceptors defined as 'A' or 'a'
+#					Donors defined as 'D' or 'd'
+#					If atom is neither donor or acceptor then it must not have DAM
+#			P - plane atom marker. Plane atoms define molecular plane. Only first 3 will be taken
+#
+m1Cyt
+C1	2.568114	0.616043	0.002936
+N1	1.116406	0.443338	0.000494		A	P
+C2	0.619779	-0.906085	-0.000651
+O2	1.432963	-1.813133	0.000027		A
+N3	-0.737185	-1.070069	0.002373		A	P
+C4	-1.543104	-0.029651	-0.002632
+N4	-2.882937	-0.281067	-0.036705		A
+H4-1	-3.172439	-1.238587	0.088979	D
+H4-2	-3.547175	0.447624	0.160345	D
+C5	-1.079064	1.326126	-0.001918			P
+H5	-1.751798	2.171751	-0.011847		D
+C6	0.269125	1.498591	0.000293
+H6	0.724139	2.482150	0.000472		D
+H1-1	2.798156	1.681595	0.002828	D
+H1-2	2.999764	0.142875	0.885726	D
+H1-3	3.002569	0.142107	-0.878019	D
+m1Cyt-imino
+C1	2.543678	0.676421	0.000006
+N1	1.096595	0.457697	-0.000007		A	P
+C2	0.654569	-0.869302	-0.000002
+O2	1.428807	-1.807578	-0.000003		A
+N3	-0.714438	-1.017307	0.000004		A	P
+C6	0.199011	1.503792	-0.000003
+H6	0.644690	2.490560	-0.000008		D
+C5	-1.137035	1.328926	0.000002			P
+C4	-1.697194	-0.013554	0.000002
+H5	-1.801737	2.180663	0.000000		D
+H1-1	2.731310	1.749184	0.000013	D
+H1-2	2.996858	0.226532	0.884375	D
+H1-3	2.996874	0.226541	-0.884361	D
+N4	-2.922766	-0.385697	0.000000		A
+H4	-3.544611	0.419388	0.000000		D
+H3	-1.047756	-1.972795	0.000000		D
+
+#############
+# Third section consists of covalent bond descriptions followed by terminating empty line
+# Each description must begin with monomer name and be followed by covalent bond description lines
+# Each covalent bond description line must comply the format:
+# IMN0	IMN1	IMN2	...	IMNn
+# where:	IMN0 - atom creating covalent bond with following atoms
+#		 	IMN1, IMN2, ..., IMNn - atoms creating covalent bond with IMN0
+#
+m1Cyt
+C1	N1	H1-1	H1-2	H1-3
+N1	C1	C2	C6
+C2	N1	O2	N3	C5
+O2	C2
+N3	C2	C4
+C4	N3	N4 C5
+N4	C4	H4-1	H4-2
+H4-1	N4
+H4-2	N4
+C5	C4	C6	H5	C2
+H5	C5
+C6	C5	N1	H6
+H6	C6
+H1-1	C1
+H1-2	C1
+H1-3	C1
+m1Cyt-imino
+C1	N1	H1-1	H1-2	H1-3
+N1	C1	C2	C6
+C2	N1	O2	N3	C5
+O2	C2
+N3	C2	C4	H3
+C4	N3	N4	C5
+N4	C4	H4
+H4	N4
+C5	C4	C6	H5	C2
+H5	C5
+C6	C5	N1	H6
+H6	C6
+H1-1	C1
+H1-2	C1
+H1-3	C1
+
